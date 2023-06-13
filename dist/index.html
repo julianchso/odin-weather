@@ -11,17 +11,55 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Weather App</title>
   </head>
   <body>
-    <div class="mainInfo"></div>
-    <form action="" id="getWeather">
-      <input type="text" id="location" value="Toronto" />
-      <label for="location"></label>
-    </form>
-    <button type="button" form="getWeather" class="btnSearch">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
+    <div class="infoCtn">
+      <div class="mainInfo">
+        <div class="location info"></div>
+        <div class="weatherDesc info"></div>
+        <div class="temperature info"></div>
+      </div>
+      <div class="extraInfo">
+        <div class="details-info">
+          <div class="details-label">Feels Like</div>
+          <div class="details-data feels-like"></div>
+        </div>
+        <div class="details-info">
+          <div class="details-label">Chance of Rain</div>
+          <div class="details-data chance-of-rain"></div>
+        </div>
+        <div class="details-info">
+          <div class="details-label">Wind Speed</div>
+          <div class="details-data wind"></div>
+        </div>
+        <div class="details-info">
+          <div class="details-label">Humidity</div>
+          <div class="details-data humidity"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ctn--getWeather">
+      <form action="" id="getWeather">
+        <!-- <input type="text" id="location" value="Toronto" /> -->
+        <div class="row">
+          <div class="input--slot">
+            <input type="text" id="location" />
+            <label for="location" class="label--floating">Search location</label>
+          </div>
+          <button type="button" form="getWeather" class="btn--search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+    </div>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
