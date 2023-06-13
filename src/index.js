@@ -13,7 +13,7 @@ const getWeather = async function () {
       location = 'Toronto';
       initialLoad = false;
     } else {
-      location = document.querySelector('#location').value;
+      location = document.querySelector('#input--location').value;
     }
 
     const weatherData = await apiCall(location);
@@ -26,5 +26,5 @@ const getWeather = async function () {
 // initial load
 getWeather();
 
-const search__btn = document.querySelector('.btnSearch');
+const search__btn = document.querySelector('.btn--search');
 search__btn.addEventListener('click', getWeather);

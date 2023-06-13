@@ -34,7 +34,7 @@ const renderData = async function (data) {
   const humidityContent = document.querySelector('.humidity');
   humidityContent.textContent = `${humidity}%`;
 
-  const input = document.querySelector('input#location');
+  const input = document.querySelector('input#input--location');
   input.value = '';
 };
 
