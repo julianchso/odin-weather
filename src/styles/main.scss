@@ -158,6 +158,10 @@ body {
   padding: 5px 0;
 }
 
+.infoCtn {
+  margin-bottom: 20px;
+}
+
 .mainInfo {
   margin-right: 15px;
 }
@@ -173,12 +177,7 @@ body {
 .row {
   display: flex;
   flex-direction: row;
-}
-
-.label--floating {
-  position: absolute;
-  left: 0px;
-  right: auto;
+  margin-top: 20px;
 }
 
 .btn--search {
@@ -193,10 +192,41 @@ body {
   border-radius: 5px;
 }
 
-input#location {
-  height: 35px;
-  width: 200px;
+.input--slot {
+  width: 100%;
+  position: relative;
+  max-width: 20em;
+}
+
+#input--location {
+  position: absolute;
+  padding: 8px 0;
+  height: 100%;
+  width: 100%;
   border: none;
   border-bottom: black solid 1px;
   outline: none;
+}
+
+.label--floating {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  left: 1em;
+  top: 0.55em;
+  right: auto;
+  padding: 10px 0;
+  transition: top 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  cursor: text;
+}
+
+input:focus + .label--floating,
+input:not(:focus):valid ~ .label--floating {
+  // TODO: top of parent and not ancestor?
+  top: -1rem;
+  bottom: 10px;
+  // left: 20px;
+  font-size: 0.75rem;
+  padding: 0 0.125em;
 }
