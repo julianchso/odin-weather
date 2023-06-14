@@ -10,12 +10,16 @@ const renderData = async function (data) {
   let wind = Math.round(data['list'][0]['wind']['speed'] * 10) / 10;
   let humidity = data['list'][0]['main']['humidity'];
 
-  const locationLabel = document.querySelector('.location');
+  const locationLabel = document.querySelector('.location--name');
+  console.log(locationLabel);
   let locationContent = document.createElement('h2');
+  locationContent.setAttribute('class', 'location__title');
   locationContent.textContent = `${city}, ${country}`;
+  console.log(locationContent);
   locationLabel.append(locationContent);
 
   const weatherDescContent = document.querySelector('.weatherDesc');
+  console.log(weatherDescContent);
   weatherDescContent.textContent = `${weatherDesc}`;
 
   // TODO: change units C or F.

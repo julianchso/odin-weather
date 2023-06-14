@@ -106,8 +106,11 @@ section {
   display: block;
 }
 body {
+  width: 100%;
   box-sizing: border-box;
   line-height: 1;
+  margin: 0 auto;
+  background-color: lightskyblue;
 }
 ol,
 ul {
@@ -130,44 +133,47 @@ table {
 }
 
 body {
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
   padding: 30px;
 }
 
-.mainInfo > .location {
+.infoCtn {
+  display: flex;
+  justify-content: center;
+}
+
+.mainInfo {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.location {
   font-size: 40px;
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
 }
 
 .mainInfo > .weatherDesc {
   padding-bottom: 10px;
 }
 
-.mainInfo > .temperature {
-  font-size: 100px;
+.extraInfo {
+  display: grid;
 }
 
-.infoCtn {
-  display: flex;
-  flex-direction: row;
+.temperature {
+  font-size: 100px;
 }
 
 .details-info {
   display: flex;
   flex-direction: row;
   padding: 5px 0;
-}
-
-.infoCtn {
-  margin-bottom: 20px;
-}
-
-.mainInfo {
-  margin-right: 15px;
-}
-
-.extraInfo {
-  display: grid;
 }
 
 .details-label {
@@ -177,7 +183,12 @@ body {
 .row {
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  margin: 30px 0;
+  justify-content: center;
+}
+
+.location__title {
+  margin-right: 20px;
 }
 
 .btn--search {
@@ -199,13 +210,15 @@ body {
 }
 
 #input--location {
-  position: absolute;
-  padding: 5px 0;
   height: 100%;
   width: 100%;
+  position: absolute;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  padding: 5px;
   border: none;
   border-bottom: black solid 1px;
   outline: none;
+  border-radius: 5px;
 }
 
 .label--floating {
@@ -214,6 +227,7 @@ body {
   display: flex;
   align-items: center;
   top: 0.55em;
+  left: 5px;
   right: auto;
   padding: 10px 0;
   transition: top 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
@@ -228,4 +242,5 @@ input:not(:focus):valid ~ .label--floating {
   // left: 20px;
   font-size: 0.75rem;
   padding: 0 0.125em;
+  opacity: 50%;
 }
