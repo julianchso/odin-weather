@@ -1,6 +1,6 @@
-import { apiCall } from './apiFunctions';
+import { apiForecastHourly, convertCtoF } from './apiFunctions';
 
-const renderData = async function (data) {
+const renderDataHourly = async function (data) {
   let city = data['city']['name'];
   let country = data['city']['country'];
   let weatherDesc = data['list'][0]['weather'][0]['description'];
@@ -11,15 +11,12 @@ const renderData = async function (data) {
   let humidity = data['list'][0]['main']['humidity'];
 
   const locationLabel = document.querySelector('.location--name');
-  console.log(locationLabel);
   let locationContent = document.createElement('h2');
   locationContent.setAttribute('class', 'location__title');
   locationContent.textContent = `${city}, ${country}`;
-  console.log(locationContent);
   locationLabel.append(locationContent);
 
   const weatherDescContent = document.querySelector('.weatherDesc');
-  console.log(weatherDescContent);
   weatherDescContent.textContent = `${weatherDesc}`;
 
   // TODO: change units C or F.
@@ -42,6 +39,15 @@ const renderData = async function (data) {
   input.value = '';
 };
 
+// TODO
+const renderTemperature = function (data) {
+  // let temperature = Math.round(data['list'][0]['main']['temp']);
+  // console.log(temperature);
+
+  const temperatureToggle = document.querySelector('input[type="checkbox"]');
+  console.log(temperatureToggle);
+};
+
 const clearInfo = function () {
   const info = document.querySelectorAll('.info');
 
@@ -50,4 +56,4 @@ const clearInfo = function () {
   }
 };
 
-export { renderData, clearInfo };
+export { renderDataHourly, renderTemperature, clearInfo };

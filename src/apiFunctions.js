@@ -1,11 +1,12 @@
-import { renderLocation, clearInfo } from './render.js';
+import { clearInfo } from './render.js';
 
 // TODO: find a way to be local variable
-const apiCall = async function (location) {
+const apiForecastHourly = async function (location) {
   const apiKey = 'a1d41c729faca0f723357cd6979c2c45';
-  const noOfCalls = 1;
+  const noOfCalls = 10;
   const unitOfMeasurement = 'metric';
 
+  // refers to 4 day, hourly forecast in openWeatherAPI.
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${apiKey}&cnt=${noOfCalls}&units=${unitOfMeasurement}`;
 
   try {
@@ -22,4 +23,9 @@ const apiCall = async function (location) {
   }
 };
 
-export { apiCall };
+const convertCtoF = function (celsius) {
+  let fahrenheit = (celsius * 9) / 5 + 32;
+  return fahrenheit;
+};
+
+export { apiForecastHourly, convertCtoF };

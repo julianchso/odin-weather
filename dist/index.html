@@ -17,13 +17,20 @@
     <title>Weather App</title>
   </head>
   <body>
+    <!-- Rounded switch -->
+    <label class="switch">
+      <input type="checkbox" />
+      <span class="slider round"></span>
+    </label>
     <div class="ctn--getWeather">
       <form action="" id="getWeather">
         <!-- <input type="text" id="location" value="Toronto" /> -->
         <div class="row">
           <div class="input--slot">
             <input type="text" id="input--location" required />
-            <label for="input--location" class="label--floating">Search location</label>
+            <label for="input--location" class="label--floating label--style"
+              >Search location</label
+            >
           </div>
           <button type="button" form="getWeather" class="btn--search">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -34,7 +41,7 @@
     <div class="infoCtn">
       <div class="mainInfo">
         <div class="mainContent">
-          <div class="temperature info"></div>
+          <div class="temperature info padding-bottom10px"></div>
           <div class="location">
             <div class="location--name info"></div>
             <i class="fa-solid fa-location-dot"></i>
@@ -55,15 +62,15 @@
     </div>
     <div class="extraInfo">
       <div class="details-info">
-        <div class="details-label">Chance of Rain</div>
+        <div class="details-label">Chance of Rain:</div>
         <div class="details-data chance-of-rain"></div>
       </div>
       <div class="details-info">
-        <div class="details-label">Wind Speed</div>
+        <div class="details-label">Wind Speed:</div>
         <div class="details-data wind"></div>
       </div>
       <div class="details-info">
-        <div class="details-label">Humidity</div>
+        <div class="details-label">Humidity:</div>
         <div class="details-data humidity"></div>
       </div>
     </div>
