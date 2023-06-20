@@ -1,51 +1,86 @@
-import { apiForecastHourly, convertCtoF } from './apiFunctions';
+import {
+  apiForecastHourly,
+  temperatureFahrenheit,
+  temperatureCelsius,
+  feelsLikeFahrenheit,
+  feelsLikeCelsius,
+} from './apiFunctions';
 
-const renderDataHourly = async function (data) {
-  let city = data['city']['name'];
-  let country = data['city']['country'];
-  let weatherDesc = data['list'][0]['weather'][0]['description'];
-  let temperature = Math.round(data['list'][0]['main']['temp']);
-  let feelsLike = Math.round(data['list'][0]['main']['feels_like']);
-  let chanceOfRain = data['list'][0]['pop'] * 100;
-  let wind = Math.round(data['list'][0]['wind']['speed'] * 10) / 10;
-  let humidity = data['list'][0]['main']['humidity'];
+const renderDataHourly = function (data) {
+  renderLocation(data);
+  renderWeatherDesc(data);
+  renderTemperature(data);
+  renderFeelsLike(data);
+  renderRain(data);
+  renderWind(data);
+  renderHumidity(data);
+  clearInput(data);
+  // TODO: change units C or F.
+};
 
+const renderLocation = function (data) {
   const locationLabel = document.querySelector('.location--name');
   let locationContent = document.createElement('h2');
   locationContent.setAttribute('class', 'location__title');
-  locationContent.textContent = `${city}, ${country}`;
+  locationContent.textContent = `${data.city}, ${data.country}`;
   locationLabel.append(locationContent);
-
-  const weatherDescContent = document.querySelector('.weatherDesc');
-  weatherDescContent.textContent = `${weatherDesc}`;
-
-  // TODO: change units C or F.
-  const temperatureContent = document.querySelector('.temperature');
-  temperatureContent.textContent = `${temperature}°C`;
-
-  const feelsLikeContent = document.querySelector('.feels-like');
-  feelsLikeContent.textContent = `${feelsLike}°C`;
-
-  const chanceOfRainContent = document.querySelector('.chance-of-rain');
-  chanceOfRainContent.textContent = `${chanceOfRain}%`;
-
-  const windContent = document.querySelector('.wind');
-  windContent.textContent = `${wind}m/s`;
-
-  const humidityContent = document.querySelector('.humidity');
-  humidityContent.textContent = `${humidity}%`;
-
-  const input = document.querySelector('input#input--location');
-  input.value = '';
 };
 
-// TODO
-const renderTemperature = function (data) {
-  // let temperature = Math.round(data['list'][0]['main']['temp']);
-  // console.log(temperature);
+const renderWeatherDesc = function (data) {
+  const weatherDescContent = document.querySelector('.weatherDesc');
+  weatherDescContent.textContent = `${data.weatherDesc}`;
+};
 
+// TODO: data is correct outside of the if statement but turns to
+// event is called but unable to pass argument
+const renderTemperature = function (data) {
+  const temperatureContent = document.querySelector('.temperature');
   const temperatureToggle = document.querySelector('input[type="checkbox"]');
-  console.log(temperatureToggle);
+
+  if (temperatureToggle.checked) {
+    let fahrenheit = temperatureFahrenheit();
+    temperatureContent.textContent = `${fahrenheit}°F`;
+
+    // console.log(data);
+  } else {
+    let celsius = temperatureCelsius();
+    temperatureContent.textContent = `${celsius}°C`;
+  }
+};
+
+const renderFeelsLike = function (data) {
+  const feelsLikeContent = document.querySelector('.feels-like');
+  const temperatureToggle = document.querySelector('input[type="checkbox"]');
+
+  if (temperatureToggle.checked) {
+    let fahrenheit = feelsLikeFahrenheit();
+    feelsLikeContent.textContent = `${fahrenheit}°F`;
+
+    // console.log(data);
+  } else {
+    let celsius = feelsLikeCelsius();
+    feelsLikeContent.textContent = `${celsius}°C`;
+  }
+};
+
+const renderRain = function (data) {
+  const chanceOfRainContent = document.querySelector('.chance-of-rain');
+  chanceOfRainContent.textContent = `${data.chanceOfRain}%`;
+};
+
+const renderWind = function (data) {
+  const windContent = document.querySelector('.wind');
+  windContent.textContent = `${data.wind}m/s`;
+};
+
+const renderHumidity = function (data) {
+  const humidityContent = document.querySelector('.humidity');
+  humidityContent.textContent = `${data.humidity}%`;
+};
+
+const clearInput = function (data) {
+  const input = document.querySelector('input#input--location');
+  input.value = '';
 };
 
 const clearInfo = function () {
@@ -56,4 +91,4 @@ const clearInfo = function () {
   }
 };
 
-export { renderDataHourly, renderTemperature, clearInfo };
+export { renderDataHourly, renderTemperature, renderFeelsLike, clearInfo };

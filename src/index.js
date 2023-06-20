@@ -1,5 +1,10 @@
-import { apiForecastDaily, apiForecastHourly } from './apiFunctions';
-import { renderDataHourly, renderTemperature, clearInfo } from './render';
+import {
+  apiForecastDaily,
+  apiForecastHourly,
+  processData,
+  // getLocalStorage,
+} from './apiFunctions';
+import { renderDataHourly, renderTemperature, renderFeelsLike, clearInfo } from './render';
 
 // import { searchLocation } from './apiFunctions';
 import './styles/main.scss';
@@ -17,7 +22,7 @@ const getWeather = async function () {
     }
 
     const weatherDataHourly = await apiForecastHourly(location);
-    await renderDataHourly(weatherDataHourly);
+    renderDataHourly(weatherDataHourly);
   } catch (err) {
     console.log(err);
   }
@@ -30,4 +35,8 @@ const search__btn = document.querySelector('.btn--search');
 search__btn.addEventListener('click', getWeather);
 
 const temperatureToggle = document.querySelector('input[type="checkbox"]');
-temperatureToggle.addEventListener('change', renderTemperature);
+
+temperatureToggle.addEventListener('change', function () {
+  renderTemperature();
+  renderFeelsLike();
+});
