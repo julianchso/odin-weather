@@ -1,9 +1,4 @@
-import {
-  apiForecastDaily,
-  apiForecastHourly,
-  processData,
-  // getLocalStorage,
-} from './apiFunctions';
+import { apiForecastDaily, apiForecastHourly, processData } from './apiFunctions';
 import { renderDataHourly, renderTemperature, renderFeelsLike, clearInfo } from './render';
 
 // import { searchLocation } from './apiFunctions';
@@ -28,9 +23,6 @@ const getWeather = async function () {
   }
 };
 
-// initial load
-getWeather();
-
 const search__btn = document.querySelector('.btn--search');
 search__btn.addEventListener('click', getWeather);
 
@@ -40,3 +32,18 @@ temperatureToggle.addEventListener('change', function () {
   renderTemperature();
   renderFeelsLike();
 });
+
+const stopSubmitEnter = function () {
+  // const form = document.querySelector('form#getWeather');
+  const form = document.querySelector('#getWeather');
+  form.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      getWeather();
+    }
+  });
+};
+
+// initial load
+getWeather();
+stopSubmitEnter();
