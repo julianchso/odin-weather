@@ -51,10 +51,9 @@ const processData = function (data) {
   let timezone = data['city']['timezone'];
   let localTime = addSeconds(newDate, difference + timezone);
 
-  console.log(`local date: ${newDate}`);
-  console.log(`difference: ${difference}`);
-  console.log(`timezone: ${timezone}`);
-  console.log(`localTime: ${localTime}`);
+  // console.log(`local date: ${newDate}`);
+  // console.log(`difference: ${difference}`);
+  // console.log(`timezone: ${timezone}`);
   // console.log(processedData.localTime);
 
   setLocalStorage(processedData);
@@ -98,16 +97,30 @@ const feelsLikeCelsius = function () {
 
 // get time of location
 
-const convertTime = function () {
+const convertDateAndTime = function () {
   let weatherData = getLocalStorage('weatherDataDay');
 
   let timezoneFromUTC = weatherData.timezoneFromUTC;
   let localTime = addSeconds(new Date(), timezoneFromUTC + new Date().getTimezoneOffset() * 60);
-  console.log(timezoneFromUTC);
-  console.log(localTime);
+
+  // console.log(timezoneFromUTC);
+  // console.log(localTime);
+  return localTime;
 };
 
-convertTime();
+const formatDateAndTime = function () {
+  const dateAndTime = convertDateAndTime().toString();
+
+  let day = dateAndTime.slice(0, 3);
+  let month = dateAndTime.slice(4, 7);
+  let dayNumber = dateAndTime.slice(8, 10);
+  let year = dateAndTime.slice(11, 15);
+
+  let time = dateAndTime.slice(16, 24);
+
+  // console.log(`${day} ${month} ${dayNumber}, ${year}, ${time}`);
+  return { day, month, dayNumber, year, time };
+};
 
 export {
   apiForecastHourly,
@@ -116,4 +129,5 @@ export {
   temperatureCelsius,
   feelsLikeFahrenheit,
   feelsLikeCelsius,
+  formatDateAndTime,
 };

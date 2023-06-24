@@ -4,6 +4,7 @@ import {
   temperatureCelsius,
   feelsLikeFahrenheit,
   feelsLikeCelsius,
+  formatDateAndTime,
 } from './apiFunctions';
 
 const renderDataHourly = function (data) {
@@ -11,6 +12,10 @@ const renderDataHourly = function (data) {
   renderWeatherDesc(data);
   renderTemperature(data);
   renderFeelsLike(data);
+  renderDate();
+  setInterval(() => {
+    renderTime();
+  }, 1000);
   renderRain(data);
   renderWind(data);
   renderHumidity(data);
@@ -48,7 +53,7 @@ const renderTemperature = function (data) {
   }
 };
 
-const renderFeelsLike = function (data) {
+const renderFeelsLike = function () {
   const feelsLikeContent = document.querySelector('.feels-like');
   const temperatureToggle = document.querySelector('input[type="checkbox"]');
 
@@ -61,6 +66,20 @@ const renderFeelsLike = function (data) {
     let celsius = feelsLikeCelsius();
     feelsLikeContent.textContent = `${celsius}°C`;
   }
+};
+
+const renderDate = function () {
+  const date = document.querySelector('.date--current');
+  let object = formatDateAndTime();
+
+  date.textContent = `${object.day} ${object.month} ${object.dayNumber}`;
+};
+
+const renderTime = function () {
+  const time = document.querySelector('.time--current');
+  let object = formatDateAndTime();
+
+  time.textContent = `${object.time}`;
 };
 
 const renderRain = function (data) {
