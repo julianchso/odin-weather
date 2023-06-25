@@ -41,9 +41,6 @@ const processData = function (data) {
     timezoneFromUTC: data['city']['timezone'],
     weatherDesc: data['list'][0]['weather'][0]['description'],
     wind: Math.round(data['list'][0]['wind']['speed'] * 10) / 10,
-    // localTime: new Date(),
-    // localTime: addSeconds(new Date(), timezoneFromUTC),
-    localTime: addSeconds(new Date(), new Date().getTimezoneOffset() * 60 + timezoneFromUTC),
   };
   // TODO: fix local time
   let newDate = new Date();
@@ -101,10 +98,13 @@ const convertDateAndTime = function () {
   let weatherData = getLocalStorage('weatherDataDay');
 
   let timezoneFromUTC = weatherData.timezoneFromUTC;
+  let UTC;
+  // timezoneFromUTC is the difference from local time zone to UTC+00:00.
+  // getTimezoneOffset() returns the difference between UTC time and local time.
   let localTime = addSeconds(new Date(), timezoneFromUTC + new Date().getTimezoneOffset() * 60);
 
-  // console.log(timezoneFromUTC);
-  // console.log(localTime);
+  console.log(`timezoneFromUTC: ${timezoneFromUTC}`);
+  console.log(`difference: ${new Date().getTimezoneOffset() * 60}`);
   return localTime;
 };
 
@@ -116,7 +116,7 @@ const formatDateAndTime = function () {
   let dayNumber = dateAndTime.slice(8, 10);
   let year = dateAndTime.slice(11, 15);
 
-  let time = dateAndTime.slice(16, 24);
+  let time = dateAndTime.slice(16, 21);
 
   // console.log(`${day} ${month} ${dayNumber}, ${year}, ${time}`);
   return { day, month, dayNumber, year, time };

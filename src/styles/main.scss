@@ -232,10 +232,6 @@ input:checked + .slider:before {
   text-align: left;
 }
 
-.details-info {
-  font-size: 20px;
-}
-
 .location {
   font-size: 40px;
   padding-bottom: 10px;
@@ -264,6 +260,7 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: row;
   padding: 5px 0;
+  font-size: 20px;
 }
 
 .details-label {
@@ -337,4 +334,8 @@ input:not(:focus):valid ~ .label--floating {
 
 .label--style {
   color: rgba(128, 128, 128, 1);
+}
+
+.date--current {
+  margin-right: 10px;
 }

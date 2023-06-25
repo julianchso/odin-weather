@@ -13,9 +13,7 @@ const renderDataHourly = function (data) {
   renderTemperature(data);
   renderFeelsLike(data);
   renderDate();
-  setInterval(() => {
-    renderTime();
-  }, 1000);
+  renderTime();
   renderRain(data);
   renderWind(data);
   renderHumidity(data);
@@ -102,6 +100,16 @@ const clearInput = function (data) {
   input.value = '';
 };
 
+const setIntervalTimer = function (fn, ms) {
+  setInterval(() => {
+    fn.call();
+  }, ms);
+};
+
+const clearIntervalTimer = function (fn) {
+  clearInterval(fn);
+};
+
 const clearInfo = function () {
   const info = document.querySelectorAll('.info');
 
@@ -110,4 +118,4 @@ const clearInfo = function () {
   }
 };
 
-export { renderDataHourly, renderTemperature, renderFeelsLike, clearInfo };
+export { renderDataHourly, renderTemperature, renderFeelsLike, clearInfo, renderTime };

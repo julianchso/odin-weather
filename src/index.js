@@ -1,5 +1,11 @@
 import { apiForecastDaily, apiForecastHourly, processData } from './apiFunctions';
-import { renderDataHourly, renderTemperature, renderFeelsLike, clearInfo } from './render';
+import {
+  renderDataHourly,
+  renderTemperature,
+  renderFeelsLike,
+  clearInfo,
+  renderTime,
+} from './render';
 
 // import { searchLocation } from './apiFunctions';
 import './styles/main.scss';
@@ -17,6 +23,7 @@ const getWeather = async function () {
     }
 
     const weatherDataHourly = await apiForecastHourly(location);
+    window.refreshIntervalId;
     renderDataHourly(weatherDataHourly);
   } catch (err) {
     console.log(err);
